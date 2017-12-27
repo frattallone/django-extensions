@@ -25,11 +25,17 @@ in your admin.py file:
     from django.contrib import admin
     from foo.models import Permission
     from django_extensions.admin import ForeignKeyAutocompleteAdmin
+    
+    
+    class UserAdmin(ForeignKeyAutocompleteAdmin):
+        # 
+        ...
 
 
     class PermissionAdmin(ForeignKeyAutocompleteAdmin):
         # User is your FK attribute in your model
         # first_name and email are attributes to search for in the FK model
+        # User admin class has to extend ForeignKeyAutocompleteAdmin to make autocomplete working
         related_search_fields = {
            'user': ('first_name', 'email'),
         }
